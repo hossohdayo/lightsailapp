@@ -36,7 +36,7 @@ def get_team():
         elif e.getText() == "中日ドラゴンズ":
             team = 'D'
         elif e.getText() == "東京ヤクルトスワローズ":
-            team = 'Ys'
+            team = 'S'
         else:
             team = 'エラー'
     return team
