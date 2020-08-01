@@ -11,36 +11,38 @@
 HTML_FILE="index.html"
 PYTHON_FILE="kuri_get_hits.py"
 RESULT_FILE="result.txt"
+TIME=`date +"%Y/%m/%d %H:%M:%S"`
+LOG_FILE="/var/log/kuri-meter/replacement_hits.log"
 
 # 処理開始
-echo "[INFO] 処理開始"
+echo "${TIME} [INFO] 処理開始" 2>&1 | tee -a "${LOG_FILE}"
 
 # 事前チェック
 if [ ! -e $HTML_FILE ]; then
-  echo "HTML_FILEファイルが見つかりません"
+  echo "${TIME} [ERROR] HTML_FILEファイルが見つかりません" 2>&1 | tee -a "${LOG_FILE}"
   exit 1
 fi
 
 if [ ! -e $PYTHON_FILE ]; then
-  echo "PYTHON_FILEファイルが見つかりません"
+  echo "${TIME} [ERROR] PYTHON_FILEファイルが見つかりません" 2>&1 | tee -a "${LOG_FILE}"
   exit 1
 fi
 
 if [ ! -e $RESULT_FILE ]; then
-  echo "RESULT_FILEファイルが見つかりません"
+  echo "${TIME} [ERROR] RESULT_FILEファイルが見つかりません" 2>&1 | tee -a "${LOG_FILE}"
   exit 1
 fi
 
 # スクレイピング開始
-echo "[INFO] スクレイピング開始"
+echo "${TIME} [INFO] スクレイピング開始" 2>&1 | tee -a "${LOG_FILE}"
 SCRPAING_RES=`python3 $PYTHON_FILE`
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
-    echo "[INFO] 処理終了"
+    echo "${TIME} [INFO] 処理終了" 2>&1 | tee -a "${LOG_FILE}"
     sleep 1
 else
-    echo "[ERROR] 予期せぬエラーが発生 異常終了"
+    echo "${TIME} [ERROR] 予期せぬエラーが発生 異常終了" 2>&1 | tee -a "${LOG_FILE}"
     exit 1
 fi
 
@@ -56,9 +58,9 @@ sed -ie "19s/2...年..月..日........./$res2/" $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
-    echo "[INFO] 置換OK"
+    echo "${TIME} [INFO] 置換OK" 2>&1 | tee -a "${LOG_FILE}"
 else
-    echo "[ERROR] 予期せぬエラーが発生 異常終了19行目"
+    echo "${TIME} [ERROR] 予期せぬエラーが発生 異常終了19行目" 2>&1 | tee -a "${LOG_FILE}"
     exit 1
 fi
 
@@ -66,9 +68,9 @@ sed -ie 21s/\>.\</\>$res1_1\</ $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
-    echo "[INFO] 置換OK"
+    echo "${TIME} [INFO] 置換OK" 2>&1 | tee -a "${LOG_FILE}"
 else
-    echo "[ERROR] 予期せぬエラーが発生 異常終了21行目"
+    echo "${TIME} [ERROR] 予期せぬエラーが発生 異常終了21行目" 2>&1 | tee -a "${LOG_FILE}"
     exit 1
 fi
 
@@ -76,9 +78,9 @@ sed -ie 22s/\>.\</\>$res1_2\</ $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
-    echo "[INFO] 置換OK"
+    echo "${TIME} [INFO] 置換OK" 2>&1 | tee -a "${LOG_FILE}"
 else
-    echo "[ERROR] 予期せぬエラーが発生 異常終了22行目"
+    echo "${TIME} [ERROR] 予期せぬエラーが発生 異常終了22行目" 2>&1 | tee -a "${LOG_FILE}"
     exit 1
 fi
 
@@ -86,9 +88,9 @@ sed -ie 23s/\>.\</\>$res1_3\</ $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
-    echo "[INFO] 置換OK"
+    echo "${TIME} [INFO] 置換OK" 2>&1 | tee -a "${LOG_FILE}"
 else
-    echo "[ERROR] 予期せぬエラーが発生 異常終了23行目"
+    echo "${TIME} [ERROR] 予期せぬエラーが発生 異常終了23行目" 2>&1 | tee -a "${LOG_FILE}"
     exit 1
 fi
 
@@ -96,9 +98,9 @@ sed -ie 24s/\>.\</\>$res1_4\</ $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
-    echo "[INFO] 置換OK"
+    echo "${TIME} [INFO] 置換OK" 2>&1 | tee -a "${LOG_FILE}"
 else
-    echo "[ERROR] 予期せぬエラーが発生 異常終了24行目"
+    echo "${TIME} [ERROR] 予期せぬエラーが発生 異常終了24行目" 2>&1 | tee -a "${LOG_FILE}"
     exit 1
 fi
 
