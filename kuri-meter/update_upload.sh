@@ -28,7 +28,7 @@ if [ ! -e $S3_UPLOAD ]; then
   exit 1
 fi
 
-sh replacement_hits.sh
+sh ${KURI_METER_PATH}/replacement_hits.sh
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
@@ -38,7 +38,7 @@ else
     exit 1
 fi
 
-sh s3-upload.sh
+sh ${KURI_METER_PATH}/s3-upload.sh
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
