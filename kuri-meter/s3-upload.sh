@@ -16,7 +16,7 @@ LOG_FILE="/var/log/kuri-meter/s3-upload.log"
 echo "${TIME} [INFO] 処理開始" 2>&1 | tee -a "${LOG_FILE}"
 
 # ローカルにアップロード対象があることを確認
-if [ ! -e $TARGET_FILE ]; then
+if [ ! -e ${KURI_METER_PATH}/$TARGET_FILE ]; then
   echo "${TIME} [ERROR] アップロード対象が見つかりません" 2>&1 | tee -a "${LOG_FILE}"
   exit 1
 fi

@@ -8,9 +8,9 @@
 ##############################################
 
 # 変数定義
-HTML_FILE="index.html"
-PYTHON_FILE="kuri_get_hits.py"
-RESULT_FILE="result.txt"
+HTML_FILE="${KURI_METER_PATH}/index.html"
+PYTHON_FILE="${KURI_METER_PATH}/kuri_get_hits.py"
+RESULT_FILE="${KURI_METER_PATH}/result.txt"
 TIME=`date +"%Y/%m/%d %H:%M:%S"`
 LOG_FILE="/var/log/kuri-meter/replacement_hits.log"
 

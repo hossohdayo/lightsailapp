@@ -8,8 +8,8 @@
 ##############################################
 
 # 変数定義
-REPLACEMENT_HITS="replacement_hits.sh"
-S3_UPLOAD="s3-upload.sh"
+REPLACEMENT_HITS="${KURI_METER_PATH}/replacement_hits.sh"
+S3_UPLOAD="${KURI_METER_PATH}/s3-upload.sh"
 TIME=`date +"%Y/%m/%d %H:%M:%S"`
 LOG_FILE="/var/log/kuri-meter/update_upload.log"
 
