@@ -28,6 +28,21 @@ if [ ! -e $S3_UPLOAD ]; then
   exit 1
 fi
 
+if [ ! -e ${KURI_METER_PATH} ]; then
+  echo "${TIME} [ERROR] KURI_METER_PATHが見つかりません" 2>&1 | tee -a "${LOG_FILE}"
+  exit 1
+fi
+
+cd ${KURI_METER_PATH}
+
+# 結果のチェック
+if [ $? -eq 0 ]; then
+    echo "${TIME} [INFO] CDOK" 2>&1 | tee -a "${LOG_FILE}"
+else
+    echo "${TIME} [ERROR] 予期せぬエラーが発生 異常終了" 2>&1 | tee -a "${LOG_FILE}"
+    exit 1
+fi
+
 sh ${KURI_METER_PATH}/replacement_hits.sh
 
 # 結果のチェック
