@@ -54,7 +54,7 @@ res1_3=`echo ${RESULT} | cut -d ',' -f 1 | awk '{print substr($0, 3, 1)}'`
 res1_4=`echo ${RESULT} | cut -d ',' -f 1 | awk '{print substr($0, 4, 1)}'`
 res2=`echo ${RESULT} | cut -d ',' -f 2`
 
-sed -ie "19s/2...年..月..日........./$res2/" $HTML_FILE
+sed -ie "24s/2...年..月..日........./$res2/" $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
@@ -64,7 +64,7 @@ else
     exit 1
 fi
 
-sed -ie 21s/\>.\</\>$res1_1\</ $HTML_FILE
+sed -ie 26s/\>.\</\>$res1_1\</ $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
@@ -74,7 +74,7 @@ else
     exit 1
 fi
 
-sed -ie 22s/\>.\</\>$res1_2\</ $HTML_FILE
+sed -ie 27s/\>.\</\>$res1_2\</ $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
@@ -84,7 +84,7 @@ else
     exit 1
 fi
 
-sed -ie 23s/\>.\</\>$res1_3\</ $HTML_FILE
+sed -ie 28s/\>.\</\>$res1_3\</ $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
@@ -94,7 +94,7 @@ else
     exit 1
 fi
 
-sed -ie 24s/\>.\</\>$res1_4\</ $HTML_FILE
+sed -ie 29s/\>.\</\>$res1_4\</ $HTML_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
