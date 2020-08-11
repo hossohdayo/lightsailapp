@@ -33,7 +33,7 @@ else
 fi
 
 # ファイルをs3にアップロード
-#/usr/local/bin/aws s3 cp ${KURI_METER_PATH}/$TARGET_FILE s3://$TARGET_BUCKET/$TARGET_FILE
+/usr/local/bin/aws s3 cp ${KURI_METER_PATH}/$TARGET_FILE s3://$TARGET_BUCKET/$TARGET_FILE
 
 # 結果のチェック
 if [ $? -eq 0 ]; then
