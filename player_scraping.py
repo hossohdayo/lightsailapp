@@ -24,7 +24,7 @@ def get_team():
         elif e.getText() == "北海道日本ハムファイターズ":
             team = 'F'
         elif e.getText() == "オリックス・バファローズ":
-            team = 'Bs'
+            team = 'B'
         elif e.getText() == "読売ジャイアンツ":
             team = 'G'
         elif e.getText() == "横浜ＤｅＮＡベイスターズ":
