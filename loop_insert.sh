@@ -3,7 +3,7 @@
 ##############################################
 # list_player.txtを読み込んで
 # insertの場合はplayer_insert.shを実行する
-# deleteの場合は(今後別シェルを実行)
+# deleteの場合はplayer_delete.shを実行する
 # 引数:なし
 ##############################################
 
@@ -22,7 +22,9 @@ LIST_PLAYER="list_player.txt"
 ROOT_DIR=`pwd`
 LIST_PLAYER_FULL_PATH="$ROOT_DIR/$LIST_PLAYER"
 TARGET_FILE="player_insert.sh"
+TARGET_FILE2="player_delete.sh"
 TARGET_FILE_FULL_PATH="$ROOT_DIR/$TARGET_FILE"
+TARGET_FILE_FULL_PATH2="$ROOT_DIR/$TARGET_FILE2"
 
 # 事前チェック
 if [ ! -e $LIST_PLAYER_FULL_PATH ]; then
@@ -31,8 +33,8 @@ if [ ! -e $LIST_PLAYER_FULL_PATH ]; then
 fi
 
 # 事前チェック
-if [ ! -e $TARGET_FILE_FULL_PATH ]; then
-  echo "${TIME} [ERROR] TARGET_FILEファイルが見つかりません"
+if [ ! -e $TARGET_FILE_FULL_PATH ] && [ ! -e $TARGET_FILE_FULL_PATH2 ]; then
+  echo "${TIME} [ERROR] TARGET_FILE(2)ファイルが見つかりません"
   exit 1
 fi
 
@@ -66,7 +68,7 @@ do
   if [ $LIST_PLAYER_CONTENTS_1 = "insert" ]; then
     sh $TARGET_FILE_FULL_PATH $LIST_PLAYER_CONTENTS_2 $LIST_PLAYER_CONTENTS_3 $LIST_PLAYER_CONTENTS_4
   elif [ $LIST_PLAYER_CONTENTS_1 = "delete" ]; then
-    echo "deleteシェル実行（予定）"
+    sh $TARGET_FILE_FULL_PATH2 $LIST_PLAYER_CONTENTS_2 $LIST_PLAYER_CONTENTS_3
   else
     echo "[ERROR] 1文字目がdeleteまたはinsert以外"
     exit 1
@@ -82,9 +84,9 @@ done
 
 # 結果の終了コードチェック
 if [ $? -eq 0 ]; then
-    echo "[INFO] LIST_PLAYER行数確認OK"
+    echo "[INFO] LOOP OK"
     exit 0
 else
-    echo "[ERROR] LIST_PLAYER行数確認異常終了"
+    echo "[ERROR] LOOP 異常終了"
     exit 1
 fi

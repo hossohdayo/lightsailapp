@@ -1,3 +1,9 @@
-insert Bs 39 1200114
-insert G 68 1400192
-insert M 57 1000083
+delete B 006
+delete G 026
+delete E 164
+delete C 58
+insert B 40 1900097
+insert G 98 1900131
+insert E 64 1000121
+insert M 58 400098
+insert E 42 1900123
