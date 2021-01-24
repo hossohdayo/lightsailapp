@@ -53,7 +53,7 @@ def get_player_position():
 
 def get_player_name():
     elems5 = data.find_all("h1")
-    name = elems5[1].getText()
+    name = elems5[2].getText()
     return name
 
 def get_player_data():
