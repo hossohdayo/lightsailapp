@@ -57,6 +57,8 @@ def get_player_name():
     return name
 
 def get_player_data():
+    titles = data.find_all(class_="bb-profile__title")
+    player = "F_player"
     elems2 = data.find_all("dd", class_="bb-profile__text")
     birth = elems2[0].getText()[:-5]
     birthday = dt.strptime(birth,'%Y年%m月%d日').date() #文字列から日付に変換
@@ -66,16 +68,21 @@ def get_player_data():
     tou = elems2[5].getText()[0:2]
     da = elems2[5].getText()[3:5]
     touda = tou + da
-    if len(elems2) >= 9: #日本人選手
+    for title in titles:
+        if "ドラフト年（順位）" in title: #日本人選手
+            player = "J_player"
+            break
+
+    if player == "J_player":
         draft = elems2[6].getText()
         pro_year = elems2[7].getText()[:-1]
         career = elems2[8].getText()
-    elif len(elems2) == 8: #外国人選手
+    elif player == "F_player":
         draft = None
         pro_year = elems2[6].getText()[:-1]
         career = elems2[7].getText()
     else:
-        print('[ERROR]bb-profile__textの要素数が8,9以外')
+        print("[ERROR]ドラフト対象選手の可否が判断できません")
 
     results = [
         birthday,
