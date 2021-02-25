@@ -62,13 +62,20 @@ def get_player_data():
     birthday = dt.strptime(birth,'%Y年%m月%d日').date() #文字列から日付に変換
     birthplace = elems2[1].getText()
     height = elems2[2].getText()[:3]
-    weight = elems2[2].getText().split('/')[1].split('kg')[0]
-    tou = elems2[3].getText()[0:2]
-    da = elems2[3].getText()[3:5]
+    weight = elems2[3].getText().split('kg')[0]
+    tou = elems2[5].getText()[0:2]
+    da = elems2[5].getText()[3:5]
     touda = tou + da
-    draft = elems2[4].getText()
-    pro_year = elems2[5].getText()[:-1]
-    career = elems2[6].getText()
+    if len(elems2) >= 9: #日本人選手
+        draft = elems2[6].getText()
+        pro_year = elems2[7].getText()[:-1]
+        career = elems2[8].getText()
+    elif len(elems2) == 8: #外国人選手
+        draft = None
+        pro_year = elems2[6].getText()[:-1]
+        career = elems2[7].getText()
+    else:
+        print('[ERROR]bb-profile__textの要素数が8,9以外')
 
     results = [
         birthday,
