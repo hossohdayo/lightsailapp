@@ -70,7 +70,7 @@ def get_team_id():
             team_id = "B"
         elif e.getText() == "読売ジャイアンツ":
             team_id = "G"
-        elif e.getText() == "横浜ＤｅＮＡベイスターズ":
+        elif e.getText() == "横浜DeNAベイスターズ":
             team_id = "De"
         elif e.getText() == "阪神タイガース":
             team_id = "T"
