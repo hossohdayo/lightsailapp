@@ -7,7 +7,14 @@ import sys
 from logging import getLogger, config
 
 def get_player():
-    with open("./log_config.json", "r", encoding="utf-8") as f:
+    ########################################################
+    #変数定義
+    ########################################################
+    roster_path = os.environ['ROSTER_PATH']
+    log_config_path = roster_path + "/log_config.json"
+    filepath = roster_path + "/roster.txt"
+
+    with open(log_config_path, "r", encoding="utf-8") as f:
         config.dictConfig(load(f))
 
     logger = getLogger(__name__)
@@ -16,7 +23,6 @@ def get_player():
     #事前確認
     ########################################################
     logger.info('処理開始')
-    filepath = './roster.txt'
     # rosterファイル存在確認
     if os.path.isfile(filepath) == 0:
         logger.error(filepath + 'ファイルがありません。処理を終了します。')
@@ -38,6 +44,10 @@ def get_player():
     url = requests.get(url_date)
     data = BeautifulSoup(url.content, 'html.parser')
     data_three_column_right = data.select('.three_column_right')
+    if data_three_column_right == []:
+        logger.error('データがありません。処理を終了します。')
+        sys.exit(50)
+
     data_lions = data_three_column_right[2]
 
     # ポジションを抽出
