@@ -78,10 +78,10 @@ def roster_tweet():
     # 140文字以内であることを確認
     if len(tweet_content1) > 140:
         logger.error('tweet_content1が140字を超過しています')
-        sys.exit(2)
+        sys.exit(1)
     elif len(tweet_content2) > 140:
         logger.error('tweet_content2が140字を超過しています')
-        sys.exit(2)
+        sys.exit(1)
     else:
         logger.info('140字以内OK')
 

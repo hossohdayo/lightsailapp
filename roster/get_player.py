@@ -46,7 +46,7 @@ def get_player():
     data_three_column_right = data.select('.three_column_right')
     if data_three_column_right == []:
         logger.error('データがありません。処理を終了します。')
-        sys.exit(50)
+        sys.exit(1)
 
     data_lions = data_three_column_right[2]
 
