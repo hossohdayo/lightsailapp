@@ -11,7 +11,7 @@ import get_player
 import roster_tweet
 
 ########################################################
-#　実行すると試合開始X時間前にXXを実行する
+#　実行すると試合開始1時間前にget_playerとroster_tweetを実行する
 ########################################################
 
 ########################################################
@@ -19,7 +19,6 @@ import roster_tweet
 ########################################################
 roster_path = os.environ['ROSTER_PATH']
 log_config_path = roster_path + "/log_config.json"
-filepath = roster_path + "/roster.txt"
 
 with open(log_config_path, "r", encoding="utf-8") as f:
     config.dictConfig(load(f))
