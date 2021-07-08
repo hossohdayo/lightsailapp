@@ -94,6 +94,7 @@ def roster_tweet():
     post_reply_tweet = api.update_status(tweet_content2, post_tweet.id)
     logger.info('2tweetしました')
     logger.info('処理終了')
+    return 0
 
 if __name__=="__main__":
     roster_tweet()

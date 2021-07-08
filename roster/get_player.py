@@ -81,6 +81,7 @@ def get_player():
         f.write(roster_list)
 
     logger.info('処理終了')
+    return 0
 
 if __name__=="__main__":
     get_player()
