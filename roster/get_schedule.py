@@ -40,7 +40,6 @@ def get_schedule():
     today = datetime.date.today()
     mm = todaｙ.strftime("%m")
     dd = todaｙ.strftime("%d")
-    dd = '10'
     mmdd = mm + dd
     logger.info('本日の日付' + mmdd )
 
