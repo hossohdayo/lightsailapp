@@ -30,12 +30,6 @@ def get_schedule():
     #事前確認
     ########################################################
     logger.info('処理開始')
-    # rosterファイル存在確認
-    if os.path.isfile(filepath) == 0:
-        logger.error(filepath + 'ファイルがありません。処理を終了します。')
-        sys.exit(1)
-    else:
-        logger.info(filepath + 'ファイル存在確認OK')
 
     today = datetime.date.today()
     mm = todaｙ.strftime("%m")
