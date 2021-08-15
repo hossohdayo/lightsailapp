@@ -25,8 +25,8 @@ ROSTER_TXT_SED_FULL_PATH="$ROSTER_PATH/$ROSTER_TXT_SED"
 TODAY=`date +%Y%m%d`
 ROSTER_TXT_TODAY="roster_sed.txt_$TODAY"
 ROSTER_TXT_TODAY_FULL_PATH="$ROSTER_PATH/$ROSTER_TXT_TODAY"
-#YEST=`date +%Y%m%d --date '1 day ago'`
-YEST=`date -v -1d +%Y%m%d` #macで実行する場合
+YEST=`date +%Y%m%d --date '1 day ago'`
+#YEST=`date -v -1d +%Y%m%d` #macで実行する場合
 ROSTER_TXT_YEST="roster_sed.txt_$YEST"
 ROSTER_TXT_YEST_FULL_PATH="$ROSTER_PATH/$ROSTER_TXT_YEST"
 DIFF_TXT_FULL_PATH="$ROSTER_PATH/get_diff.txt"
@@ -66,7 +66,10 @@ diff -u $ROSTER_TXT_YEST_FULL_PATH $ROSTER_TXT_SED_FULL_PATH | tail -n +3 | grep
 
 # 結果の終了コードチェック
 if [ $? -eq 0 ]; then
-    echo "[INFO] diffOK"
+    echo "[INFO] diffOK差分あり"
+elif [ $? -eq 1 ]; then
+    echo "[INFO] diffOK差分なし"
+    echo "なし" >> $DIFF_TXT_FULL_PATH
 else
     echo "[ERROR] diffの結果出力に異常終了しました"
     exit 1
