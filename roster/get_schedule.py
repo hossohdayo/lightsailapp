@@ -9,9 +9,11 @@ import schedule
 import time
 import get_player
 import roster_tweet
+import roster_diff_tweet
 
 ########################################################
 #　実行すると試合開始1時間前にget_playerとroster_tweetを実行する
+#　さらにroster_diff_tweetも実行するよう改修
 ########################################################
 
 ########################################################
@@ -72,14 +74,20 @@ def get_schedule():
                 logger.info("日付はあるが試合なし")
                 return('16:00')
 
-def get_player_roster_tweet():
-    logger.info('This is test.')
+def get_player_roster_tweet_roster_diff_tweet():
+    logger.info('get_player_roster_tweet_roster_diff_tweet開始')
     res_get_player = get_player.get_player()
     if res_get_player == 0:
         logger.info('res_get_playerが正常終了')
         res_roster_tweet = roster_tweet.roster_tweet()
         if res_roster_tweet == 0:
             logger.info('roster_tweetが正常終了')
+            res_roster_diff_tweet = roster_diff_tweet()
+            if res_roster_diff_tweet == 0:
+                logger.info('roster_diff_tweetが正常終了')
+            else:
+                logger.error('roster_diff_tweetでエラーが発生しました')
+                sys.exit(1)
         else:
             logger.error('roster_tweetでエラーが発生しました')
             sys.exit(1)
@@ -91,7 +99,7 @@ def get_player_roster_tweet():
 if __name__=="__main__":
     _results = get_schedule()
     logger.info('_results = ' + _results)
-    schedule.every().day.at(_results).do(get_player_roster_tweet)
+    schedule.every().day.at(_results).do(get_player_roster_tweet_roster_diff_tweet)
     while True:
         schedule.run_pending()
         time.sleep(60)
