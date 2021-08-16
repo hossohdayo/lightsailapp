@@ -82,7 +82,7 @@ def get_player_roster_tweet_roster_diff_tweet():
         res_roster_tweet = roster_tweet.roster_tweet()
         if res_roster_tweet == 0:
             logger.info('roster_tweetが正常終了')
-            res_roster_diff_tweet = roster_diff_tweet()
+            res_roster_diff_tweet = roster_diff_tweet.roster_diff_tweet()
             if res_roster_diff_tweet == 0:
                 logger.info('roster_diff_tweetが正常終了')
             else:
