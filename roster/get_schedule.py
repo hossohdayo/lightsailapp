@@ -10,6 +10,7 @@ import time
 import get_player
 import roster_tweet
 import roster_diff_tweet
+import subprocess
 
 ########################################################
 #　実行すると試合開始1時間前にget_playerとroster_tweetを実行する
@@ -21,6 +22,7 @@ import roster_diff_tweet
 ########################################################
 roster_path = os.environ['ROSTER_PATH']
 log_config_path = roster_path + "/log_config.json"
+output_diff_path = roster_path + "/output_diff.sh"
 
 with open(log_config_path, "r", encoding="utf-8") as f:
     config.dictConfig(load(f))
@@ -82,11 +84,17 @@ def get_player_roster_tweet_roster_diff_tweet():
         res_roster_tweet = roster_tweet.roster_tweet()
         if res_roster_tweet == 0:
             logger.info('roster_tweetが正常終了')
-            res_roster_diff_tweet = roster_diff_tweet.roster_diff_tweet()
-            if res_roster_diff_tweet == 0:
-                logger.info('roster_diff_tweetが正常終了')
+            res_sh = subprocess.run(['sh', output_diff_path])
+            if res_sh.returncode == 0:
+                logger.info('sh output_diff.shが正常終了')
+                res_roster_diff_tweet = roster_diff_tweet.roster_diff_tweet()
+                if res_roster_diff_tweet == 0:
+                    logger.info('roster_diff_tweetが正常終了')
+                else:
+                    logger.error('roster_diff_tweetでエラーが発生しました')
+                    sys.exit(1)
             else:
-                logger.error('roster_diff_tweetでエラーが発生しました')
+                logger.error('sh output_diff.shでエラーが発生しました')
                 sys.exit(1)
         else:
             logger.error('roster_tweetでエラーが発生しました')
