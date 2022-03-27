@@ -60,9 +60,9 @@ def get_player_data():
     titles = data.find_all(class_="bb-profile__title")
     player = "F_player"
     elems2 = data.find_all("dd", class_="bb-profile__text")
-    birth = elems2[0].getText()[:-5]
+    birth = elems2[1].getText()[:-5]
     birthday = dt.strptime(birth,'%Y年%m月%d日').date() #文字列から日付に変換
-    birthplace = elems2[1].getText()
+    birthplace = elems2[0].getText()
     height = elems2[2].getText()[:3]
     weight = elems2[3].getText().split('kg')[0]
     tou = elems2[5].getText()[0:2]
