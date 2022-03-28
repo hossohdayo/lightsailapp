@@ -48,7 +48,7 @@ def get_player():
         logger.error('データがありません。処理を終了します。')
         sys.exit(1)
 
-    data_lions = data_three_column_right[2]
+    data_lions = data_three_column_right[3]
 
     # ポジションを抽出
     pos_array = data_lions.select('.pos')
