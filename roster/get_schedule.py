@@ -36,8 +36,8 @@ def get_schedule():
     logger.info('処理開始')
 
     today = datetime.date.today()
-    mm = todaｙ.strftime("%m")
-    dd = todaｙ.strftime("%d")
+    mm = today.strftime("%m")
+    dd = today.strftime("%d")
     mmdd = mm + dd
     logger.info('本日の日付' + mmdd )
 
@@ -50,6 +50,9 @@ def get_schedule():
         logger.info('日付を変換しました。変換後：' + d )
     else:
         d = dd
+    if mm[1] == '3':
+        mm = '04'
+        logger.info('月を変換しました。変換後：' + mm )
     # 月を変数にして代入
     url_date = 'https://npb.jp/bis/teams/calendar_l_' + mm + '.html'
     url = requests.get(url_date)
