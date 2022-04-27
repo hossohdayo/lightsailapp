@@ -61,23 +61,27 @@ def get_schedule():
 
     # 本日の試合開始時間を取得
     for d_date in data_teschedate:
-        #本日日付
-        if d_date.find("div", text=d) != None:
-            # 時間の記載があるかチェック
-            if d_date.find("div", class_="tevsteam") != None:
-                game_time = d_date.find("div", class_="tevsteam").contents[2]
-                str_game_time = game_time.get_text()
-                str_game_time = str_game_time.replace('：', ':')
-                logger.info('試合時間は' + str_game_time)
-                game_dttm = datetime.datetime.strptime(str_game_time, '%H:%M')
-                minus_time = datetime.timedelta(hours=1) # ずらす時間
-                kouji_time = game_dttm - minus_time
-                str_kouji_time = kouji_time.strftime('%H:%M')
-                logger.info('公示時間は' + str_kouji_time)
-                return(str_kouji_time)
-            else:
-                logger.info("日付はあるが試合なし")
-                return('16:00')
+        try: 
+            #本日日付
+            if d_date.find("div", text=d) != None:
+                # 時間の記載があるかチェック
+                if d_date.find("div", class_="tevsteam") != None:
+                    game_time = d_date.find("div", class_="tevsteam").contents[2]
+                    str_game_time = game_time.get_text()
+                    str_game_time = str_game_time.replace('：', ':')
+                    logger.info('試合時間は' + str_game_time)
+                    game_dttm = datetime.datetime.strptime(str_game_time, '%H:%M')
+                    minus_time = datetime.timedelta(hours=1) # ずらす時間
+                    kouji_time = game_dttm - minus_time
+                    str_kouji_time = kouji_time.strftime('%H:%M')
+                    logger.info('公示時間は' + str_kouji_time)
+                    return(str_kouji_time)
+                else:
+                    logger.info("日付はあるが試合なし")
+                    return('16:00')
+        except ValueError as err: # 3・4月は同じ日付があるためうまく時間が取得できないバグの暫定対応
+            logger.info(err)
+            return('16:00')
 
 def get_player_roster_tweet_roster_diff_tweet():
     logger.info('get_player_roster_tweet_roster_diff_tweet開始')
