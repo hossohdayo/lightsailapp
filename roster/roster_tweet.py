@@ -87,11 +87,11 @@ def roster_tweet():
 
     # Tweet
     post_tweet = api.update_status(tweet_content1)
+    logger.info('tweetID:' + str(post_tweet.id))
     logger.info('1tweetしました')
-    tweet_obj = api.get_status(post_tweet.id)
 
     # リプライ形式でTweet
-    post_reply_tweet = api.update_status(tweet_content2, post_tweet.id)
+    api.update_status(status = tweet_content2, in_reply_to_status_id = post_tweet.id)
     logger.info('2tweetしました')
     logger.info('処理終了')
     return 0
