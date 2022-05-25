@@ -1,22 +1,21 @@
 import requests
 from bs4 import BeautifulSoup
 import datetime
-from json import load
+#from json import load
 import os
 import sys
 from logging import getLogger, config
+import yaml
 
 def get_player():
     ########################################################
     #変数定義
     ########################################################
     roster_path = os.environ['ROSTER_PATH']
-    log_config_path = roster_path + "/log_config.json"
+    log_config_path = roster_path + "/log_config.yaml"
     filepath = roster_path + "/roster.txt"
 
-    with open(log_config_path, "r", encoding="utf-8") as f:
-        config.dictConfig(load(f))
-
+    config.dictConfig(yaml.load(open(log_config_path).read(), Loader=yaml.SafeLoader))
     logger = getLogger(__name__)
 
     ########################################################
