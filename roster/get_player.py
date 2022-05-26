@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import datetime
-#from json import load
 import os
 import sys
 from logging import getLogger, config
