@@ -1,23 +1,21 @@
 import json
-from json import load
 import os
 import sys
 import tweepy
 import datetime
 from logging import getLogger, config
+import yaml
 
 def roster_diff_tweet():
     ########################################################
     #変数定義
     ########################################################
     roster_path = os.environ['ROSTER_PATH']
-    log_config_path = roster_path + "/log_config.json"
+    log_config_path = roster_path + "/log_config.yaml"
     filepath = roster_path + "/config.json"
     tweet_content = "出場選手登録抹消\n"
 
-    with open(log_config_path, "r", encoding="utf-8") as f:
-        config.dictConfig(load(f))
-
+    config.dictConfig(yaml.load(open(log_config_path).read(), Loader=yaml.SafeLoader))
     logger = getLogger(__name__)
 
     ########################################################

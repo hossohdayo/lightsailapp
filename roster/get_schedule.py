@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import datetime
-from json import load
 import os
 import sys
 from logging import getLogger, config
@@ -11,6 +10,7 @@ import get_player
 import roster_tweet
 import roster_diff_tweet
 import subprocess
+import yaml
 
 ########################################################
 #　実行すると試合開始1時間前にget_playerとroster_tweetを実行する
@@ -21,12 +21,10 @@ import subprocess
 #変数定義
 ########################################################
 roster_path = os.environ['ROSTER_PATH']
-log_config_path = roster_path + "/log_config.json"
+log_config_path = roster_path + "/log_config.yaml"
 output_diff_path = roster_path + "/output_diff.sh"
 
-with open(log_config_path, "r", encoding="utf-8") as f:
-    config.dictConfig(load(f))
-
+config.dictConfig(yaml.load(open(log_config_path).read(), Loader=yaml.SafeLoader))
 logger = getLogger(__name__)
 
 def get_schedule():

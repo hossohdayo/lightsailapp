@@ -18,7 +18,19 @@ loggers:
     level: DEBUG
     handlers: [console, file]
     propagate: no
+  get_schedule: 
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
   get_player:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  roster_tweet: 
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+  roster_diff_tweet: 
     level: DEBUG
     handlers: [console, file]
     propagate: no
