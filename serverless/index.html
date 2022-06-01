@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <title>ServerlessTest</title>
+</head>
+<body>
+    <div id="hello-vue" class="demo">
+        <form v-on:submit.prevent="onSubmit">
+        <label for="team_name">チーム名:</label>
+        <select id="team_name" v-model="team_name">
+            <option disabled>チームを選択</option>
+            <option value="lions">ライオンズ</option>
+            <option value="fighters">ファイターズ</option>
+            <option value="marins">マリーンズ</option>
+            <option value="hawks">ホークス</option>
+            <option value="bufflows">バファローズ</option>
+            <option value="eagles">イーグルス</option>
+            <option value="giants">ジャイアンツ</option>
+            <option value="dragons">ドラゴンズ</option>
+            <option value="tigers">タイガース</option>
+            <option value="carp">カープ</option>
+            <option value="baysters">ベイスターズ</option>
+            <option value="swallows">スワローズ</option>
+        </select>
+        背番号:<input type="text" name="number" v-model="number">
+        <input type="submit" value="検索">
+        </form>
+        <!-- <pre>{{ $data }}</pre> -->
+        <ul>
+            <li v-if="results.number">背番号：{{ results.number }}</li>
+            <li v-if="results.player_name">選手名：{{ results.player_name }}</li>
+            <li v-if="results.position">ポジション：{{ results.position }}</li>
+            <li v-if="results.throwing_batting">投打：{{ results.throwing_batting }}</li>
+            <li v-if="results.height">身長/体重：{{ results.height }}cm/{{ results.weight }}kg</li>
+            <li v-if="results.birthday">誕生日：{{ results.birthday }}</li>
+            <li v-if="results.career">経歴：{{ results.career }}</li>
+            <li v-if="results.pro_year">プロ年数：{{ results.pro_year }}年</li>
+            <li v-if="results.message">{{ results.message }}</li>
+        </ul>
+    </div>
+    <!-- Import App -->
+    <script src="./index.js"></script>
+    <!-- Mount App -->
+    <script>const mountedApp = HelloVueApp.mount('#hello-vue')</script>
+</body>
+</html>
